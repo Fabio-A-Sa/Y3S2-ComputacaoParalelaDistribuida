@@ -2,7 +2,11 @@
 
 ## Computação Paralela
 
-TODO
+Surgiu da necessidade de termos mais núcleos do processador a executar o mesmo processo para aumentar a rapidez. Aumentar o número de ciclos de relógio (frequência) não é viável pois gasta demasiada energia. Os limites estáveis máximos estão na gama dos 4GHz e 140w de potência. 
+
+Um compilador por si só não é capaz de transformar um programa sequencial num programa multicore, devido a manipulação de memória e à concorrência. Assim, os maiores desafios são a construção de programas escaláveis que continuem eficientes se:
+- houver aumento substancial dos dados a manipular;
+- existirem mais núcleos disponíveis;
 
 ### Performance
 

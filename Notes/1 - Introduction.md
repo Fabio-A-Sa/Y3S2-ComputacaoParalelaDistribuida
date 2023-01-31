@@ -8,6 +8,8 @@ Um compilador por si só não é capaz de transformar um programa sequencial num
 - houver aumento substancial dos dados a manipular;
 - existirem mais núcleos disponíveis;
 
+Nesta unidade curricular o [OpenMP](https://www.openmp.org/) vai ser utilizado com diretivas que, em conjunto com o compilador habitual de C/C++, possam traduzir programas sequenciais em programas multicore.
+
 ### Performance
 
 - MIPS: número de instruções por segundo, geralmente relacionado com a frequência do CPU. Tem em consideração todos os processos a calcular;

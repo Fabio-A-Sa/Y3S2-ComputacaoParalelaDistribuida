@@ -20,15 +20,16 @@ Estes dois indicadores não são suficientes para classificar a performance do s
 ```c
 // Version A
 for (i=1; i<n; i++)
-for (j=1; j<n; j++)
-for (k=1; k<n; k++)
-c[i,j]+= a[i,k]*b[k,j]
+    for (j=1; j<n; j++)
+        for (k=1; k<n; k++)
+            c[i,j]+= a[i,k]*b[k,j]
 
 // Version B
 for (i=1; i<n; i++)
-for (k=1; k<n; k++)
-for (j=1; j<n; j++)
-c[i,j]+= a[i,k]*b[k,j]
+    for (k=1; k<n; k++)
+        for (j=1; j<n; j++)
+            c[i,j]+= a[i,k]*b[k,j]
 ```
 
-A segunda versão do algoritmo é muito mais eficiente uma vez que usa a memória cache para proveito próprio: os cálculos são executados por linhas em vez de ser por colunas, resultando numa menor quantidade de *cache miss* e I/O envolvendo menos troca com o disco.
+A segunda versão do algoritmo é muito mais eficiente uma vez que usa a memória cache para proveito próprio: os cálculos são executados por linhas em vez de ser por colunas, resultando numa menor quantidade de *cache miss* e I/O envolvendo o disco.
+

@@ -48,7 +48,7 @@ A utilização de memória cache garante dois tipos de localização:
 
 ### Tipos de memória
 
-`SRAM` - Static Random Access Memory, menor tempo de acesso e que mantém o valor ao longo do tempo;
+`SRAM` - Static Random Access Memory, menor tempo de acesso e que mantém o valor ao longo do tempo; <br>
 `DRAM` - Dynamic Random Access Memory, maior tempo de acesso e não mantém o seu valor ao longo do tempo. Implementada com condensadores, por isso mais cara. Necessita de um circuito adicional para garantir o estado dos dados.
 
 ### Coerência de Cache

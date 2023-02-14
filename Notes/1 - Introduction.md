@@ -15,7 +15,7 @@ Nesta unidade curricular o [OpenMP](https://www.openmp.org/) vai ser utilizado c
 - `MIPS`: número de instruções por segundo, geralmente relacionado com a frequência do CPU. Tem em consideração todos os processos a calcular;
 - `FLOPS`: número de instruções em vírgula flutuante por segundo, avaliado para cada processo;
 
-Estes dois indicadores não são suficientes para classificar a performance do sistema. É necessário que essa performance seja sustentável, ou seja, que dependa o menos possível de factores como a velocidade I/O, hierarquia de memória ou acessos à mesma. Muitas vezes a performance depende do desenho do algoritmo implementado:
+Estes dois indicadores não são suficientes para classificar a performance do sistema. É necessário que essa performance seja sustentada, ou seja, que dependa o menos possível de factores como a velocidade I/O, hierarquia de memória ou acessos à mesma. Muitas vezes a performance depende do desenho do algoritmo implementado:
 
 ```c
 // Version A
@@ -32,4 +32,15 @@ for (i=1; i<n; i++)
 ```
 
 A segunda versão do algoritmo é muito mais eficiente uma vez que usa a memória cache para proveito próprio: os cálculos são executados por linhas em vez de ser por colunas, resultando numa menor quantidade de *cache miss* e I/O envolvendo o disco.
+
+## PAPI - Performance API
+
+Derivado Yes -> a API infere quantas falhas houve. Não é retirado/contado diretamente do CPU. <TODO>
+
+## Memórias Cache no impacto da Performance
+
+Nas memórias, a dimensão é inversamente proporcional à rapidez. Por ordem decrescente de rapidez: registos, L1-cache, L2-cache, L<N>-cache, memória. Registos, L1 e L2 estão incorporadas no CPU, as restantes são externas.
+
+`SRAM` - Static Random Access Memory, menor tempo de acesso e que mantém o valor ao longo do tempo;
+`DRAM` - Dynamic Random Access Memory, maior tempo de acesso e não mantém o seu valor ao longo do tempo. Implementada com condensadores, por isso mais cara. Necessita de um circuito adicional para garantir o estado dos dados.
 

@@ -33,10 +33,6 @@ for (i=1; i<n; i++)
 
 A segunda versão do algoritmo é muito mais eficiente uma vez que usa a memória cache para proveito próprio: os cálculos são executados por linhas em vez de ser por colunas, resultando numa menor quantidade de *cache miss* e I/O envolvendo o disco.
 
-## PAPI - Performance API
-
-Derivado Yes -> a API infere quantas falhas houve. Não é retirado/contado diretamente do CPU. <TODO>
-
 ## Memórias Cache no impacto da Performance
 
 Nas memórias, a dimensão é inversamente proporcional à rapidez. Por ordem decrescente de rapidez: registos, L1-cache, L2-cache, L<N>-cache, memória. Registos, L1 e L2 estão incorporadas no CPU, as restantes são externas. <br>

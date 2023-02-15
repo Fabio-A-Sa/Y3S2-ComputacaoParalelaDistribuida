@@ -53,6 +53,6 @@ A utilização de memória cache garante dois tipos de localização:
 
 ### Coerência de Cache
 
-Cada núcleo do processador contém a sua própria cache e esta é requisitada antes de qualquer instrução. Para vários sistemas, uma atualização de um valor numa memória cache tem de inviabilizar ou atualizar os valores usados noutros processos que copiaram os mesmos dados. Uma possível implementação passa por permitir a leitura concorrente entre vários processos mas só um processo em modo de escrita (*Write-invalidate protocol*), sinalizando a sua modificação. Só quando os outros processos vão precisar desse valor e esse estiver sinalizado como inválido é que vão buscar à memória principal, reduzindo o impacto na performance.
+Cada núcleo do processador contém a sua própria cache e esta é requisitada antes de qualquer instrução. Para vários sistemas, uma atualização de um valor numa memória cache tem de inviabilizar ou atualizar os valores usados noutros processos que copiaram os mesmos dados. Uma possível implementação passa por permitir a leitura concorrente entre vários processos mas só um processo em modo de escrita (*Write-invalidate protocol*), sinalizando a sua modificação. Só quando os outros processos vão precisar desse valor e esse estiver sinalizado como inválido é que vão buscar à memória principal, reduzindo o impacto na performance.E    
 
 A coerência de cache é só implementada em sistemas com relativamente **poucos núcleos** por motivos de eficiência. 

@@ -6,13 +6,10 @@
 #include <papi.h>
 
 using namespace std;
-
 #define SYSTEMTIME clock_t
-
  
 void OnMult(int m_ar, int m_br) 
 {
-	
 	SYSTEMTIME Time1, Time2;
 	
 	char st[100];
@@ -29,13 +26,9 @@ void OnMult(int m_ar, int m_br)
 		for(j=0; j<m_ar; j++)
 			pha[i*m_ar + j] = (double)1.0;
 
-
-
 	for(i=0; i<m_br; i++)
 		for(j=0; j<m_br; j++)
 			phb[i*m_br + j] = (double)(i+1);
-
-
 
     Time1 = clock();
 
@@ -49,7 +42,6 @@ void OnMult(int m_ar, int m_br)
 			phc[i*m_ar+j]=temp;
 		}
 	}
-
 
     Time2 = clock();
 	sprintf(st, "Time: %3.3f seconds\n", (double)(Time2 - Time1) / CLOCKS_PER_SEC);
@@ -66,11 +58,8 @@ void OnMult(int m_ar, int m_br)
     free(pha);
     free(phb);
     free(phc);
-	
-	
 }
 
-// add code here for line x line matriz multiplication
 void OnMultLine(int m_ar, int m_br)
 {   	
 	SYSTEMTIME Time1, Time2;
@@ -124,13 +113,11 @@ void OnMultLine(int m_ar, int m_br)
     free(phc);
 }
 
-// add code here for block x block matriz multiplication
 void OnMultBlock(int m_ar, int m_br, int bkSize)
 {
     
     
 }
-
 
 void handle_error (int retval)
 {
@@ -151,13 +138,9 @@ void init_papi() {
             << " REVISION: " << PAPI_VERSION_REVISION(retval) << "\n";
 }
 
-
 int main (int argc, char *argv[])
 {
-	char c;
 	int lin, col, blockSize;
-	int op;
-	
 	int EventSet = PAPI_NULL;
   	long long values[2];
   	int ret;
@@ -175,7 +158,7 @@ int main (int argc, char *argv[])
 	ret = PAPI_add_event(EventSet,PAPI_L2_DCM);
 	if (ret != PAPI_OK) cout << "ERROR: PAPI_L2_DCM" << endl;
 
-	op=1;
+	int op = 1;
 	do {
 		cout << endl << "1. Multiplication" << endl;
 		cout << "2. Line Multiplication" << endl;
@@ -187,7 +170,6 @@ int main (int argc, char *argv[])
 		printf("Dimensions: lins=cols ? ");
    		cin >> lin;
    		col = lin;
-
 
 		// Start counting
 		ret = PAPI_start(EventSet);
@@ -205,7 +187,6 @@ int main (int argc, char *argv[])
 				cin >> blockSize;
 				OnMultBlock(lin, col, blockSize);  
 				break;
-
 		}
 
   		ret = PAPI_stop(EventSet, values);
@@ -217,9 +198,7 @@ int main (int argc, char *argv[])
 		if ( ret != PAPI_OK )
 			std::cout << "FAIL reset" << endl; 
 
-
-
-	}while (op != 0);
+	} while (op != 0);
 
 	ret = PAPI_remove_event( EventSet, PAPI_L1_DCM );
 	if ( ret != PAPI_OK )
@@ -233,4 +212,5 @@ int main (int argc, char *argv[])
 	if ( ret != PAPI_OK )
 		std::cout << "FAIL destroy" << endl;
 
+	return 0;
 }

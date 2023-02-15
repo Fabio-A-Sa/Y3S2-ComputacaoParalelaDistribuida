@@ -116,7 +116,6 @@ void OnMultLine(int m_ar, int m_br)
 void OnMultBlock(int m_ar, int m_br, int bkSize)
 {
     
-    
 }
 
 void handle_error (int retval)

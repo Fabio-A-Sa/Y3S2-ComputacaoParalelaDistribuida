@@ -73,7 +73,77 @@ A mesma memória não está acessível a todos os cors ou máquinas da mesma for
 
 ### Modelo de Memória Partilhada
 
-A mesma memória é partilhada por todas as máquinas intervenientes nos cálculos.
+A mesma memória é partilhada por todas as máquinas intervenientes nos cálculos. <br>
+
+O exemplo mais comum é o do **fork/join** em threads. O processo principal contém uma área de variáveis globais, e cada subprocesso filho contém variáveis locais bem como os seus próprios *program counter* e *stack pointer*.
+
+Sempre que temos ciclos, *for loops*, é um ponto indicado para tratar com este tipo de paralelismo. Em C, usando a diretiva pragma com o OpenMP, podemos implementar assim:
+
+```c
+#pragma omp parallel for num_threads(k)
+for (i = 0; i < N; i++)
+    a[i] = b[i] + c[i];
+```
+
+Há criação de K novas threads, e cada uma processa N/K ciclos. O código torna-se mais simples de perceber em vez de usar as tradicionais **p-threads**.
+
+Exemplo: <br>
+Cálculo do valor de Pi. Um exemplo de solução não admissível:
+
+```cpp
+double area = 0.0, pi, x;
+int n; // define a precisão do valor de pi calculado
+
+#pragma omp parallel for private(x)
+for (int i = 0 ; i < n ; i++) {
+    x = (i + 0.5) / n;
+    #pragma omp critical
+    area += 4.0 / (1.0 + x * x);
+}
+pi = area / n;
+```
+
+Estamos a tornar privado o termo X para que cada thread criado tenha uma cópia do seu valor. Caso contrário teríamos um problema de **race condition**: não haver sobreposição de valores. 
+
+Pelo contrário, o termo Area não pode ser privada, pois esse acumulador tem de ser conhecido de todas as `threads`. Esta variável tem de ter um **semáforo**, para que só um dos processos consiga escrever, mantendo o sincronismo e fazendo com que os outros processos esperem numa fila pela escrita. Como resultado, o tempo de processamento aumenta.
+
+Outra solução é criar um array para os valores da área, para que existam mais acumuladores:
+
+```cpp
+double area[2], pi = 0.0, x;
+int n;
+
+for (int i = 0 ; i < 2 ; i++) {
+    area[i] = 0.0;
+}
+
+#pragma omp parallel for private(x)
+for (int i = 0 ; i < n ; i++) {
+    x = (i+0.5) / n;
+    area[omp_get_thread_num()] += 4.0/(1.0 + x*x);
+}
+
+for (int i = 0 ; i < 2 ; i++) {
+    pi += area[i];
+}
+pi = pi / n;
+```
+
+Esta solução também não é admissível pois o array de área está contido no mesmo bloco de memória cache: `false sharing`. Assim cada processo estará a invalidar o bloco de memória do outro, e o esforço necessário para manter a consistência degrada a performance. 
+
+Uma forma de contornar o `false sharing` é espaçar a memória do array de acordo com o tamanho do bloco de cache, para não haver invalidação em cada escrita da thread vizinha:
+
+```cpp
+double area = 0.0, pi, x;
+int n;
+
+#pragma omp parallel for private(x) reduction(+:area)
+for (int i = 0 ; i < n ; i++) {
+    x = (i + 0.5) / n;
+    area += 4.0 / (1.0 + x*x);
+}
+pi = area / n;
+```
 
 ### Modelo de MapReduce
 

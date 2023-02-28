@@ -153,3 +153,5 @@ pi = area / n;
 ### Modelo de MapReduce
 
 Modelo mais recente que é usado para processar muitos dados. Faz operações de cálculo distribuído (*map*) em cada máquina e o (*reduce*) final para recolher os dados parciais calculados. Usado em *business inteligence*.
+
+A operação de `Map` é característica de paralelismo de dados, enquanto que o `Reduce` é característica de uma operação de paralelismo funcional.

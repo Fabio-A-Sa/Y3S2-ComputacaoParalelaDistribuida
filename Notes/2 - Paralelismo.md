@@ -67,3 +67,14 @@ Exemplos:
 
 ## Modelos de Programação Paralela
 
+### Modelo de Memória Distribuída
+
+A mesma memória não está acessível a todos os cors ou máquinas da mesma forma.
+
+### Modelo de Memória Partilhada
+
+A mesma memória é partilhada por todas as máquinas intervenientes nos cálculos.
+
+### Modelo de MapReduce
+
+Modelo mais recente que é usado para processar muitos dados. Faz operações de cálculo distribuído (*map*) em cada máquina e o (*reduce*) final para recolher os dados parciais calculados. Usado em *business inteligence*.

@@ -18,7 +18,9 @@ Esta perspectiva é otimista, pois com muitos processadores é necessário haver
 - ciclos de processamento que suportam o paralelismo;
 - ciclos de processamento para a sincronização entre processos;
 
-## Paralelismo Funcional
+## Tipos de Paralelismo
+
+### Paralelismo Funcional
 
 Quando tarefas independentes executam diferentes operações em diferentes conjuntos de dados.
 
@@ -40,4 +42,28 @@ sum = 0
 for element in vector:
     sum += element
 ```
+
+Nesta situação existe um paralelismo funcional, onde as sequências das somas pode ser efetuadas de par a par, reduzindo o tempo e transformando o ciclo em algo mais eficiente.
+
+### Paralelismo de Dados
+
+Quando diferentes tarefas executam a mesma operação consultando dados diferentes. É o exemplo que acontece no produto de matrizes. Exemplo:
+
+```c
+for (int i = 0 ; i < 99 ; i++) {
+    a[i] = b[i] + c[i];
+}
+```
+
+É possível implementar a soma dos dois vetores simultaneamente, dividindo-os em blocos e tratando cada um antes de juntar à solução final.
+
+### Streaming
+
+Divide o processamento dos dados em partes e cada uma fica da responsabilidade do núcleo. O número de passos limita o *speedup* do programa.
+
+Exemplos:
+- Real time data analysis;
+- Real time making support;
+
+## Modelos de Programação Paralela
 

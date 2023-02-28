@@ -69,7 +69,12 @@ Exemplos:
 
 ### Modelo de Memória Distribuída
 
-A mesma memória não está acessível a todos os cors ou máquinas da mesma forma.
+Idealmente para programas com tarefas sequenciais. A mesma memória local não está acessível a todos os cors ou máquinas da mesma forma, mas existem canais de comunicações.
+
+- Partição do problema em subprocessos;
+- Gerir o canal de comunicações, para juntar as subsoluções;
+- Aglomerar os resultados obtidos. Depende do número de cors da máquina usada;
+- Mapear o resultado final;
 
 ### Modelo de Memória Partilhada
 

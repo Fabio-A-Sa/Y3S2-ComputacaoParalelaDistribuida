@@ -18,3 +18,6 @@ Vantagens de sistemas distribuidos:
 - Escalabilidade: tanto a nível geográfico como administrativo;
 - Tolerância a falhas: <TODO>
 
+<TODO: aula anterior>
+
+

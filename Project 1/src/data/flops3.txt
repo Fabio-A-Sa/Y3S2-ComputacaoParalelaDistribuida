@@ -1,0 +1,12 @@
+Dimensions: 4096
+Block Size: 512
+FLOPS:137438953473
+Dimensions: 6144
+Block Size: 512
+FLOPS:463856467969
+Dimensions: 8192
+Block Size: 512
+FLOPS:1099511627777
+Dimensions: 10240
+Block Size: 512
+FLOPS:2147483648001

@@ -74,5 +74,3 @@ Diretivas para blocos executados por uma thread única:
 - **#pragma omp master**, apenas o primeiro thread criado é que realiza a tarefa;
 - **#pragma omp single**, o primeiro thread que chegar a esse ponto irá realizar a tarefa;
 - **#pragma omp barrier**, garante que os threads criados fiquem sincronizados a partir desse ponto;
-
-<TODO>

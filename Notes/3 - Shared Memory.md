@@ -50,10 +50,9 @@ void omp_set_num_threads(int num_threads); // A
 #pragma omp parallel [num_threads(n)];     // B
 ```
 
-A diretiva `firstprivate` garante a preservação da variável <TODO>
-A diretiva `lastprivate` Passa para fora o último valor a executar/calcular no loop <TODO>
+A diretiva `firstprivate` cria variáveis privadas tendo valores iniciais idênticos à variável controlada pela thread mestre quando o loop é inicializado.
 
-<TODO>
+A diretiva `lastprivate` passa para fora o último valor a executar/calcular no loop calculado pela última thread.
 
 A diretiva `reduction` permite fazer *join* dos valores parciais de cada thread e retornar o valor para a memória partilhada, ou seja, tornar o resultado público após todas as iterações. Exemplo de utilização:
 

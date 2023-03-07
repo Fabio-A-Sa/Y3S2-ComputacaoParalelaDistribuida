@@ -1,0 +1,29 @@
+#!/bin/bash
+make
+
+export OMP_THREAD_LIMIT=8
+export OMP_DYNAMIC=FALSE
+
+echo task 2
+export OMP_NUM_THREADS=2
+./task 10000000 10000
+
+echo task 4
+export OMP_NUM_THREADS=4
+./task 10000000 10000
+
+echo task 8
+export OMP_NUM_THREADS=8
+./task 10000000 10000
+
+echo parreg 2
+export OMP_NUM_THREADS=2
+./parreg 10000000 10000
+
+echo parreg 4
+export OMP_NUM_THREADS=4
+./parreg 10000000 10000
+
+echo parreg 8
+export OMP_NUM_THREADS=8
+./parreg 10000000 10000

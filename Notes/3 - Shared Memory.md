@@ -55,7 +55,25 @@ A diretiva `lastprivate` Passa para fora o último valor a executar/calcular no 
 
 <TODO>
 
-A diretiva `reduction` permite <TODO>
+A diretiva `reduction` permite fazer *join* dos valores parciais de cada thread e retornar o valor para a memória partilhada, ou seja, tornar o resultado público após todas as iterações. Exemplo de utilização:
+
+```c
+double area = 0.0, pi, x;
+int i, n;
+
+#pragma omp parallel for private(x) reduction(+:area)
+for (i = 0 ; i < n ; i++) {
+    x = (i + 0.5) / n;
+    area += 4.0 / (1.0 + x*x);
+}
+pi = area / n;
+```
 
 A diretiva `nowait`, permite que os threads não sincronizem no final de cada ciclo e avancem para o bloco seguinte, em vez de estarem à espera que todos terminem.
 
+Diretivas para blocos executados por uma thread única:
+- **#pragma omp master**, apenas o primeiro thread criado é que realiza a tarefa;
+- **#pragma omp single**, o primeiro thread que chegar a esse ponto irá realizar a tarefa;
+- **#pragma omp barrier**, garante que os threads criados fiquem sincronizados a partir desse ponto;
+
+<TODO>

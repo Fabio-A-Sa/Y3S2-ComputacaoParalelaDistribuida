@@ -74,3 +74,11 @@ Diretivas para blocos executados por uma thread única:
 - **#pragma omp master**, apenas o primeiro thread criado é que realiza a tarefa;
 - **#pragma omp single**, o primeiro thread que chegar a esse ponto irá realizar a tarefa;
 - **#pragma omp barrier**, garante que os threads criados fiquem sincronizados a partir desse ponto;
+
+## SPMD - Single Program Multiple Data
+
+Abordagem mais flexível que permite não realizar a mesma instrução no mesmo momento, ao contrário do SIMD (Single Instruction Multiple Dat, como observado nas instruções assembly). Para este caso:
+
+- `omp_get_num_threads`, retorna o número de threads do processador;
+- `omp_get_thread_num`, retorna o id da thread, variando entre 0 e o número máximo que o processador suporta;
+

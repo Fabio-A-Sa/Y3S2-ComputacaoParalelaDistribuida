@@ -23,7 +23,9 @@ In this Project, we will study the effect on the processor performance on the me
 
 #### Members
 
-
+- Alexandre Guimarães Gomes Correia, up202007042@fe.up.pt;
+- Fábio Araújo de Sá, up202007658@fe.up.pt;
+- João Paulo Moreira Araújo, up202004293@fe.up.pt;
 
 **@ Fábio Araújo de Sá** <br>
 **2022/2023**

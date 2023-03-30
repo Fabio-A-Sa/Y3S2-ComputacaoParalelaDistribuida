@@ -155,3 +155,20 @@ pi = area / n;
 Modelo mais recente que é usado para processar muitos dados. Faz operações de cálculo distribuído (*map*) em cada máquina e o (*reduce*) final para recolher os dados parciais calculados. Usado em *business inteligence*.
 
 A operação de `Map` é característica de paralelismo de dados, enquanto que o `Reduce` é característica de uma operação de paralelismo funcional.
+
+## Modelos de Memória
+
+Por um lado temos o *Shared Memory*, onde o número de threads ativas é uma no início e uma no fim mas pode mudar dinamicamente durante a execução. Por outro temos o *Message Passing*, onde todos os processos ativos executam o programa e a transformação sequencial para paralela requer um maior esforço. 
+
+### Modelo de memória partilhada
+
+Quando uma máquina possui uma memória partilhada comum a todos os cors podemos usar diretivas de `Shared Memory` presente no OpenMP. Todas as variáveis declaradas na memória partilhada são visíveis na memória privada de cada cor. Se os cors quiserem manipular variáveis da memória partilhada:
+- Declara a variável como privada (*private(variable)*), cria uma cópia para a sua própria memória;
+- Declara a variável como zona crítica (*critical*), se o código que a utiliza for extenso, para criação de semáforos de acesso e modificação da mesma em modo concorrente;
+- Declara a operação como atómica (*atomic*), se o código que a utiliza for pequeno;
+
+Cada `thread` tem o seu próprio contexto de execução, que contém:
+- variáveis estáticas;
+- variáveis alocadas dinamicamente na heap;
+- variáveis em runtime na stack;
+- stack para as funções invocadas durante a execução da thread;

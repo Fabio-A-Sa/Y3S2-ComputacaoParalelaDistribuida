@@ -1,23 +1,4 @@
-# Shared Memory
-
-## Modelos de Memória
-
-Por um lado temos o *Shared Memory*, onde o número de threads ativas é uma no início e uma no fim mas pode mudar dinamicamente durante a execução. Por outro temos o *Message Passing*, onde todos os processos ativos executam o programa e a transformação sequencial para paralela requer um maior esforço. 
-
-### Modelo de memória partilhada
-
-Quando uma máquina possui uma memória partilhada comum a todos os cors podemos usar diretivas de `Shared Memory` presente no OpenMP. Todas as variáveis declaradas na memória partilhada são visíveis na memória privada de cada cor. Se os cors quiserem manipular variáveis da memória partilhada:
-- Declara a variável como privada (*private(variable)*), cria uma cópia para a sua própria memória;
-- Declara a variável como zona crítica (*critical*), se o código que a utiliza for extenso, para criação de semáforos de acesso e modificação da mesma em modo concorrente;
-- Declara a operação como atómica (*atomic*), se o cídigo que a utiliza for pequeno;
-
-Cada `thread` tem o seu próprio contexto de execução, que contém:
-- variáveis estáticas;
-- variáveis alocadas dinamicamente na heap;
-- variáveis em runtime na stack;
-- stack para as funções invocadas durante a execução da thread;
-
-## OpenMP
+# OpenMP
 
 As diretivas só funcionam para a instrução seguinte e não para um conjunto de instruções, como por exemplo ciclos dentro de ciclos. <br>
 Em ciclos *for*, há duas formas de garantir a integridade dos loops e das operações internas:

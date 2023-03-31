@@ -42,7 +42,7 @@ for (i=0; i<n; i++){
     a=i+1;
     printf("Thread %d has value a=%d for i=%d\n", omp_get_thread_num(), a, i);
 }
-printf(“value after loop a=%d”,a);
+printf("value after loop a=%d", a);
 ```
 
 A diretiva `reduction` permite fazer *join* dos valores parciais de cada thread e retornar o valor para a memória partilhada, ou seja, tornar o resultado público após todas as iterações. Exemplo de utilização:

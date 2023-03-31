@@ -6,7 +6,7 @@ Em ciclos *for*, há duas formas de garantir a integridade dos loops e das opera
 - Declarar a variável J como privada, há criação de uma cópia para cada thread criada:
 
 ```c
-#pragma omp parallel for  private(j)
+#pragma omp parallel for private(j)
 int i;
 for (i = 0; i < n ; i++)
     for (j = 0 ; j < n ; j++)
@@ -31,7 +31,7 @@ void omp_set_num_threads(int num_threads); // A
 #pragma omp parallel [num_threads(n)];     // B
 ```
 
-A diretiva `firstprivate` cria variáveis privadas tendo valores iniciais idênticos à variável controlada pela thread mestre quando o loop é inicializado.
+A diretiva `firstprivate` cria variáveis privadas tendo valores iniciais idênticos à variável controlada pela thread mestre quando o loop é inicializado. Por default, `private` não define valores das variáveis.
 
 A diretiva `lastprivate` passa para fora o último valor a executar/calcular no loop calculado pela última thread.
 

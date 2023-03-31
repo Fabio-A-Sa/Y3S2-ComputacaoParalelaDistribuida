@@ -33,7 +33,17 @@ void omp_set_num_threads(int num_threads); // A
 
 A diretiva `firstprivate` cria variáveis privadas tendo valores iniciais idênticos à variável controlada pela thread mestre quando o loop é inicializado. Por default, `private` não define valores das variáveis.
 
-A diretiva `lastprivate` passa para fora o último valor a executar/calcular no loop calculado pela última thread.
+A diretiva `lastprivate` passa para fora o último valor a executar/calcular no loop calculado pela última thread. Neste seguinte caso, o valor de **a** será 5 (número da última thread, 4, mais 1):
+
+```c
+int a, n=5;
+#pragma omp parallel for lastprivate(a)
+for (i=0; i<n; i++){ 
+    a=i+1;
+    printf("Thread %d has value a=%d for i=%d\n", omp_get_thread_num(), a, i);
+}
+printf(“value after loop a=%d”,a);
+```
 
 A diretiva `reduction` permite fazer *join* dos valores parciais de cada thread e retornar o valor para a memória partilhada, ou seja, tornar o resultado público após todas as iterações. Exemplo de utilização:
 

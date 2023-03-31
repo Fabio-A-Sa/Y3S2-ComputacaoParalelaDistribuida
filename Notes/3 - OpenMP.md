@@ -69,9 +69,11 @@ pi = area / n;
 A diretiva `nowait`, permite que os threads não sincronizem no final de cada ciclo e avancem para o bloco seguinte, em vez de estarem à espera que todos terminem.
 
 Diretivas para blocos executados por uma thread única:
-- **#pragma omp master**, apenas o primeiro thread criado é que realiza a tarefa;
+- **#pragma omp master**, apenas o primeiro thread criado (o master) é que realiza a tarefa;
 - **#pragma omp single**, o primeiro thread que chegar a esse ponto irá realizar a tarefa;
 - **#pragma omp barrier**, garante que os threads criados fiquem sincronizados a partir desse ponto;
+
+
 
 ## SPMD - Single Program Multiple Data
 

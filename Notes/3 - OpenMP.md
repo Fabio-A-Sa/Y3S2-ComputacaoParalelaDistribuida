@@ -31,7 +31,14 @@ void omp_set_num_threads(int num_threads); // A
 #pragma omp parallel [num_threads(n)];     // B
 ```
 
-A diretiva `firstprivate` cria variáveis privadas tendo valores iniciais idênticos à variável controlada pela thread mestre quando o loop é inicializado. Por default, `private` não define valores das variáveis.
+A diretiva `firstprivate` cria variáveis privadas tendo valores iniciais idênticos à variável controlada pela thread mestre quando o loop é inicializado. Por default, `private` não define valores das variáveis, pelo que podem conter "lixo" da memória:
+
+```c
+int a = -1;
+#pragma omp parallel private(a)
+printf("Inside parallel:  Value of a = %d", a); // a = 37613, 7, 0...
+printf("Outside parallel: Value of a = %d", a); // a = -1
+```
 
 A diretiva `lastprivate` passa para fora o último valor a executar/calcular no loop calculado pela última thread. Neste seguinte caso, o valor de **a** será 5 (número da última thread, 4, mais 1):
 
@@ -45,7 +52,7 @@ for (i=0; i<n; i++){
 printf("value after loop a=%d", a);
 ```
 
-A diretiva `reduction` permite fazer *join* dos valores parciais de cada thread e retornar o valor para a memória partilhada, ou seja, tornar o resultado público após todas as iterações. Exemplo de utilização:
+A diretiva `reduction` permite fazer *join* dos valores parciais de cada thread e retornar o valor para a memória partilhada, ou seja, tornar o resultado público após todas as iterações. É muito mais eficiente do que criar uma `critical section`. Exemplo de utilização:
 
 ```c
 double area = 0.0, pi, x;

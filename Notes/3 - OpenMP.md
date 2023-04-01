@@ -89,12 +89,28 @@ Abordagem mais flexível que permite não realizar a mesma instrução no mesmo 
 
 ## Paralelismo Funcional
 
-Por vezes o código tem várias dependências pelo que o paralelismo funciona só para algumas partes. No seguinte caso é possível paralelisar o cálculo de V e W e depois de X e Y, por esta ordem:
+Por vezes o código tem várias dependências pelo que o paralelismo funciona só para algumas partes. No seguinte caso é possível paralelisar o cálculo de V, W e Y e depois de X, por esta ordem:
 
 ```c
 v = alpha();
 w = beta();
 x = gamma(v, w);
 y = delta();
+printf ("%6.2f\n", epsilon(x,y));
+```
+
+Uma hipótese, usando as diretivas `sections` e `section` é a seguinte:
+
+```c
+#pragma omp parallel sections
+{
+    #pragma omp section
+    v = alpha();
+    #pragma omp section
+    w = beta();
+    #pragma omp section
+    y = delta();
+}
+x = gamma(v, w);
 printf ("%6.2f\n", epsilon(x,y));
 ```

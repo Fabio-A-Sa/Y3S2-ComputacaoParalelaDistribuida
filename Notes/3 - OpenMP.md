@@ -114,3 +114,20 @@ Uma hipótese, usando as diretivas `sections` e `section` é a seguinte:
 x = gamma(v, w);
 printf ("%6.2f\n", epsilon(x,y));
 ```
+
+Com `tasks` podemos criar várias tarefas para uma thread específica, no caso do seguinte exemplo para a primeira thread criada. Por default as variáveis são **firstprivate**, logo o seu valor externo à zona paralela não é modificado. Para passar para externo, então temos de declarar com variável partilhada:
+
+```c
+int a=2, b=3, c;
+#pragma omp parallel
+{
+    #pragma omp single nowait
+    {
+        #pragma omp task shared(b)
+        b = beta();
+        #pragma omp task shared(a)
+        a = alpha();
+    }
+}
+c = a + b; // c = beta()+alpha()
+```

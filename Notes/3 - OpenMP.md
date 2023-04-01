@@ -131,3 +131,7 @@ int a=2, b=3, c;
 }
 c = a + b; // c = beta()+alpha()
 ```
+
+Normalmente uma região controlada por tasks é mais eficiente:
+- Em várias regiões paralelas nenhuma thread pode sair ou entrar até ao final da região;
+- Em várias tarefas, cada thread cria o número de filhos necessários, ficando mais eficiente. É usada apenas uma região paralela;

@@ -73,11 +73,12 @@ Diretivas para blocos executados por uma thread única:
 - **#pragma omp single**, o primeiro thread que chegar a esse ponto irá realizar a tarefa;
 - **#pragma omp barrier**, garante que os threads criados fiquem sincronizados a partir desse ponto;
 
-O `schedule` permite especificar quantos loops serão distribuídos pelas threads. Há duas formas possíveis:
+O `schedule` permite especificar quantos loops serão distribuídos pelas threads. Há três formas possíveis:
 - **static**, quando as iterações são alocadas antes de todo o processamento, numa distribuição uniforme do trabalho. Tem pouco overhead;
 - **dynamic**, quando só algumas iterações são alocadas e as restantes são escolhidas em runtime, para equilibrar o trabalho. Tem muito overhead e só compensa quando as threads não vão realizar o mesmo esforço / tempo de processamento;
+- **guided**, quando a distribuição do loop segue uma heurística. Normalmente a alocação é maior no início e tende a ser menor no fim das execuções;
 
-
+Podem ser indicados `chunks`, que são intervalos contínuos de iterações para cada thread. Aumentar o chunk reduz o overhead e pode aumentar o número de caches hit; diminuir o chunk permite balancear melhor a quantidade de trabalho entre threads.
 
 ## SPMD - Single Program Multiple Data
 

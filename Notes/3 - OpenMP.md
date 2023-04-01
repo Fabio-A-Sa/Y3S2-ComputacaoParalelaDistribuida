@@ -87,3 +87,5 @@ Abordagem mais flexível que permite não realizar a mesma instrução no mesmo 
 - `omp_get_num_threads`, retorna o número de threads do processador;
 - `omp_get_thread_num`, retorna o id da thread, variando entre 0 e o número máximo que o processador suporta;
 
+## Paralelismo Funcional
+

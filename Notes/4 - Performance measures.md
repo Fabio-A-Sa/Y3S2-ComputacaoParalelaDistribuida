@@ -11,4 +11,4 @@ O `speedup` é o rácio entre o tempo de processamento sequencial e processament
 
 A eficiência é o rácio entre o speedup e o número de processadores.
 
-Um sistema diz-se escalável se a eficiência permanecer constante mesmo aumentando o número de dados a calcular e o número de processadores.
+Um sistema diz-se escalável se a eficiência permanecer constante mesmo aumentando o número de dados a calcular (N) e o número de processadores (P). Para uma variação pequena de N em relação a P então o sistema é de alta escalabilidade, mas se N aumentar muito em relação a P então o sistema é de baixa escalabilidade, pois necessita de muitos dados para poder aumentar o número de processadores e continuar com a mesma eficiência.

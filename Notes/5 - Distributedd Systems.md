@@ -15,7 +15,7 @@ Vantagens de sistemas distribuidos:
 - Aceder a recursos remotos;
 - Performance: pode usar vários computadores para resolver um só problema;
 - Escalabilidade: tanto a nível geográfico como administrativo;
-- Tolerância a falhas: <TODO>
+- Tolerância a falhas: *reliability* (confiável) e *availability* (disponível);
 
 <TODO: aula anterior>
 

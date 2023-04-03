@@ -37,3 +37,6 @@ Com base em mensagens (*datagrams*), é *connectionless* e não tem garantias da
 
 São canais `stream` bidirecionais, ou seja, é possível enviar dados ao mesmo tempo em sentidos opostos. É orientada à conexão e é confiável: garante ordem das mensagens, não repetição das mesmas e controlo de fluxo. Como um canal TCP é identificado pelo par (IP Address, TCP Port), então terá de haver um `send()` por cada processo em multicast, ao contrário do UDP. <br>
 O custo destes mecanismos é grande, pelo que é só usado quando necessitamos mesmo.
+
+## Streaming Applications
+

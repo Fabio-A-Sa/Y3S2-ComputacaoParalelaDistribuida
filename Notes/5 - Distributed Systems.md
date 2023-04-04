@@ -41,3 +41,6 @@ O custo destes mecanismos é grande, pelo que é só usado quando necessitamos m
 ## Streaming Applications
 
 Aplicações multimédia cujo conteúdo é apresentado antes de ser completamente recebido, porque é implementado através de um buffer. São exemplos o Youtube, internet, rádio, Zoom. Não tolera grandes variações de largura de banda, nem uma elevada perda ou delay de recepção de pacotes. A compressão de conteúdo é importante para estas aplicações. 
+
+## Remote Procedure Call (RPC)
+

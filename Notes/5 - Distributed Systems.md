@@ -26,4 +26,11 @@ Os canais de comunicação entre processos / entidades de um sistema distribuíd
 - ser *message-based* ou *stream-based*;
 - ter ou não controlo de fluxo;
 
-## 
+## Internet Protocols
+
+### UDP
+
+
+
+### TCP
+

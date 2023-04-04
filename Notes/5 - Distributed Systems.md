@@ -44,4 +44,7 @@ Aplicações multimédia cujo conteúdo é apresentado antes de ser completament
 
 ## Remote Procedure Call (RPC)
 
-Um paradigma mais familiar do que as mensagens enviadas por send() e receive(), porque assim já não depende do protocolo de comunicação usado e concede transparência ao sistema. É usado mais para aplicações client-server.
+Um paradigma mais familiar do que as mensagens enviadas por send() e receive(), porque assim já não depende do protocolo de comunicação usado e concede transparência ao sistema. É usado mais para aplicações client-server. É tipicamente implementada em cima da camada de transporte da aplicação.
+
+O cliente invoca uma `client stub` e o servidor uma `server stub`, ambas funções locais. Estas sim comunicam com um protocolo entre si, usando uma chamada *remote procedure call*. Esta estratégia também é usada para System Calls (*trap functions*).
+

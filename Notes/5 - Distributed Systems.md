@@ -44,3 +44,4 @@ Aplicações multimédia cujo conteúdo é apresentado antes de ser completament
 
 ## Remote Procedure Call (RPC)
 
+Um paradigma mais familiar do que as mensagens enviadas por send() e receive(), porque assim já não depende do protocolo de comunicação usado e concede transparência ao sistema. É usado mais para aplicações client-server.

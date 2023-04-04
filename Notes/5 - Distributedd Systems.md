@@ -9,7 +9,7 @@ Uma **mensagem** é uma sequência de bits atómica e formal que segue um protoc
 - FEUP File System;
 - P2P;
 
-Vantagens de sistemas distribuidos:
+Vantagens de sistemas distribuídos:
 
 - Partilha de recursos;
 - Aceder a recursos remotos;
@@ -20,8 +20,10 @@ Vantagens de sistemas distribuidos:
 ## Comunication Channels
 
 Os canais de comunicação entre processos / entidades de um sistema distribuído podem:
-- ser *connection-based* ou *connectionless*, 
-- ser confiáveis ou não, na medida de perderem ou não dados pelo caminho;
-- assegurar ordem das mensagems ou não;
+- ser *connection-based* ou *connectionless*, mediante seja necessário criar canais de comunicação antes da troca de dados;
+- ser confiáveis ou não, na medida de perderem ou não dados pelo caminho ou haver duplicação de pacotes;
+- assegurar ordem das mensagems ou não. Manter a ordem é importante para ver se não houve perdas no caminho;
 - ser *message-based* ou *stream-based*;
-- com ou sem controlo de fluxo;
+- ter ou não controlo de fluxo;
+
+## 

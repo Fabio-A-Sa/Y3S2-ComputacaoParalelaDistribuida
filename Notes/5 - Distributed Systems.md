@@ -30,7 +30,8 @@ Os canais de comunicação entre processos / entidades de um sistema distribuíd
 
 ### UDP
 
-
+Com base em mensagens (*datagrams*), é *connectionless* e não tem garantias da recepção da mensagem, podendo haver perdas e duplicados do lado do receptor. Não tem controlo de fluxo e permite multicast: invocando uma única vez `send()` é possível enviar uma cópia das mensagens entre vários processos.
 
 ### TCP
 
+São canais `stream` bidirecionais, ou seja, é possível enviar dados ao mesmo tempo em sentidos opostos.

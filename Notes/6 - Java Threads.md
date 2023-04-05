@@ -226,4 +226,20 @@ class Bank {
 }
 ```
 
-<TODO>
+Os locks podem ser gradualmente colocados e retirados:
+
+```java
+public int totalBalance() {
+
+    int sum = 0;
+    for (int i = 0 ; i < slots ; i++) {
+        av[i].lock.lock();
+    }
+    for (int i = 0 ; i <  slots ; i++) {
+        sum += av[i].balance();
+        av[i].lock.unlock();
+    }
+
+    return sum;
+}
+```

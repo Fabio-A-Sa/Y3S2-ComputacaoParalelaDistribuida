@@ -52,4 +52,11 @@ Como os sistemas de cliente e servidor podem ser diferentes (diferente linguagem
 - `Standardize format`: a comunicação é efetuada da forma X durante a transferência. Requer duas traduções das mensagens e pode não ser a forma mais eficiente;
 - `Receiver-makes-right`: só do lado do servidor é que há tradução, se necessário. Isto implica que a própria mensagem contenha um identificador do tipo de plataforma usada;
 
-<TODO: o que falta>
+### Falhas
+
+O sistema RPC em caso de falhas não consegue dar o motivo da falha ao cliente: é impossível detectar se ocorreu um erro devido à request ou perda de dados no processo. 
+
+Pode haver retransmissão de tramas de informação até receber uma ACK por parte do servidor. No caso de perdas de mensagens:
+
+- `At-least-once`:
+-

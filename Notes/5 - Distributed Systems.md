@@ -63,3 +63,7 @@ Pode haver retransmissão de tramas de informação até receber uma ACK por par
 
 A abordagem `at-least-once` pode ser usada desde que do lado do cliente ou do servidor haja uma memória do estado da máquina/request anterior.
 
+## Multicast Communication
+
+Sempre que existe um emissor e vários receptores. Quando o número de receptores é igual ao número de máquinas no sistema distribuído chama-se **broadcast**. Para X senders e Y receivers é necessário haver X\*Y canais de comunicação (*point-to-point* networks).
+

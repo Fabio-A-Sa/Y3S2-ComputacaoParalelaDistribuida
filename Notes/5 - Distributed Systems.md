@@ -48,3 +48,7 @@ Um paradigma mais familiar do que as mensagens enviadas por send() e receive(), 
 
 O cliente invoca uma `client stub` e o servidor uma `server stub`, ambas funções locais. Estas sim comunicam com um protocolo entre si, usando uma chamada *remote procedure call*. Esta estratégia também é usada para System Calls (*trap functions*).
 
+Como os sistemas de cliente e servidor podem ser diferentes (diferente linguagem, diferentes estruturas de dados e protocolos associados), é importante uniformizar a comunicação. Há duas formas:
+- `Standardize format`: a comunicação é efetuada da forma X durante a transferência. Requer duas traduções das mensagens e pode não ser a forma mais eficiente;
+- `Receiver-makes-right`: só do lado do servidor é que há tradução, se necessário. Isto implica que a própria mensagem contenha um identificador do tipo de plataforma usada;
+

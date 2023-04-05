@@ -58,5 +58,8 @@ O sistema RPC em caso de falhas não consegue dar o motivo da falha ao cliente: 
 
 Pode haver retransmissão de tramas de informação até receber uma ACK por parte do servidor. No caso de perdas de mensagens:
 
-- `At-least-once`:
--
+- `At-least-once`: se os pedidos ao servidor forem indepotentes (se a mesma chamada ao procedimento remoto produzir os mesmos resultados);
+- `At-most-once`: se os pedidos ao servidor não forem indepotentes.
+
+A abordagem `at-least-once` pode ser usada desde que do lado do cliente ou do servidor haja uma memória do estado da máquina/request anterior.
+

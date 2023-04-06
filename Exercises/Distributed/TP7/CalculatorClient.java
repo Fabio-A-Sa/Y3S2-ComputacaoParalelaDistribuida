@@ -27,13 +27,14 @@ public class CalculatorClient {
             System.out.println("Partial total: " + receiver.readLine());
         }
 
+        System.out.println("something 1234");
         System.out.println("Server total sum: " + receiver.readLine());
     }
  
     public static void main(String[] args) {
         
         if (args.length < 2) {
-            System.out.println("usage: java CalculatorClient <HOST> <PORT> [NUMBERS]");
+            System.out.println("usage: java CalculatorClient <HOST> <PORT> [...NUMBERS]");
             return;
         }
         String hostname = args[0];

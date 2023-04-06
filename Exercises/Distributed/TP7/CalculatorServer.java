@@ -44,21 +44,33 @@ public class CalculatorServer {
         BufferedReader receiver = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
         String clientName = clientSocket.getInetAddress().getHostName();
 
+        int partialSum;
         this.lock.lock();
-       
+        if (this.clients.containsKey(clientName)) {
+            partialSum = this.clients.get(clientName);
+        } else {
+            this.clients.put(clientName, 0);
+            partialSum = 0;
+        }
         this.lock.unlock();
 
         String clientInput;
         int clientNumber;
-        int partialSum = 0;
         while ((clientInput = receiver.readLine()) != null) {
             System.out.println(clientInput);
             clientNumber = Integer.parseInt(clientInput);
             partialSum += clientNumber;
             sender.println(partialSum);
         }
-    
-        sender.println(partialSum);
+
+        this.lock.lock();
+        this.clients.put(clientName, partialSum);
+        int totalSum = 0;
+        for (int value : this.clients.values()) {
+            totalSum += value;
+        }
+        sender.println(totalSum);
+        this.lock.unlock();
     }
  
     public static void main(String[] args) {

@@ -17,17 +17,18 @@ public class CalculatorClient {
         System.out.println("Starting Calculator");
     }
 
-    public void send(String[] args) throws IOException, UnknownHostException {
-        BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-        PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-        BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in))) {
-        String userInput;
-        while ((userInput = stdIn.readLine()) != null) {
-            out.println(userInput);
-            String serverResponse = in.readLine();
-            System.out.println("Server response: " + serverResponse);
+    public void sendNumbers(String[] args) throws IOException {
+
+        PrintWriter sender = new PrintWriter(this.socket.getOutputStream(), true);
+        BufferedReader receiver = new BufferedReader(new InputStreamReader(this.socket.getInputStream()));
+
+        for (int index = 2 ; index < args.length ; index++){
+            System.out.println("Sending number: " + args[index]);
+            sender.println(args[index]);
+            System.out.println("Partial total: " + receiver.readLine());
         }
-        System.out.println("Final sum: " + in.readLine());
+
+        System.out.println("Server total sum: " + receiver.readLine());
     }
  
     public static void main(String[] args) {
@@ -42,7 +43,7 @@ public class CalculatorClient {
         try {
             CalculatorClient client = new CalculatorClient(port, hostname);
             client.start();
-            client.send();
+            client.sendNumbers(args);
 
         } catch (UnknownHostException exception) {
             System.out.println("Server not found: " + exception.getMessage());

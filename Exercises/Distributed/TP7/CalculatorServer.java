@@ -39,6 +39,19 @@ public class CalculatorServer {
     }
 
     public void handleClient(Socket clientSocket) throws IOException {
+        
+        PrintWriter sender = new PrintWriter(clientSocket.getOutputStream(), true);
+        BufferedReader receiver = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+
+        String clientInput;
+        int clientNumber;
+        while ((clientInput = receiver.readLine()) != null) {
+            System.out.println(clientNumber);
+            clientNumber = Integer.parseInt(clientInput);
+            
+        }
+    
+        writer.println("Something else from server!");
 
             /**
                 InputStream input = socket.getInputStream();

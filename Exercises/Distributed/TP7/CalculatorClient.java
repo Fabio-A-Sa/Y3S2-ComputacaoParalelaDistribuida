@@ -27,7 +27,6 @@ public class CalculatorClient {
             System.out.println("Partial total: " + receiver.readLine());
         }
 
-        System.out.println("something 1234");
         System.out.println("Server total sum: " + receiver.readLine());
     }
  

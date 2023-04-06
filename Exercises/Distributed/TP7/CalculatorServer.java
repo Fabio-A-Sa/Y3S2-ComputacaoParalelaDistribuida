@@ -7,14 +7,14 @@ public class CalculatorServer {
 
     private int port;
     private int globalSum;
-    private Map<Integer, Integer> partialSum;
+    private Map<String, Integer> clients;
     private ServerSocket serverSocket;
     private ReentrantLock lock;
 
     public CalculatorServer(int port) {
         this.port = port;
         this.globalSum = 0;
-        this.partialSum = new HashMap<Integer, Integer>();
+        this.clients = new HashMap<String, Integer>(); // (clientName, partialSum)
         this.lock = new ReentrantLock();
     }
 
@@ -42,30 +42,23 @@ public class CalculatorServer {
         
         PrintWriter sender = new PrintWriter(clientSocket.getOutputStream(), true);
         BufferedReader receiver = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+        String clientName = clientSocket.getInetAddress().getHostName();
+
+        this.lock.lock();
+       
+        this.lock.unlock();
 
         String clientInput;
         int clientNumber;
+        int partialSum = 0;
         while ((clientInput = receiver.readLine()) != null) {
-            System.out.println(clientNumber);
+            System.out.println(clientInput);
             clientNumber = Integer.parseInt(clientInput);
-            
+            partialSum += clientNumber;
+            sender.println(partialSum);
         }
     
-        writer.println("Something else from server!");
-
-            /**
-                InputStream input = socket.getInputStream();
-                BufferedReader reader = new BufferedReader(new InputStreamReader(input));
- 
-                String time = reader.readLine();
-
-                System.out.println("New client connected: "+ time);
- 
-                OutputStream output = socket.getOutputStream();
-                PrintWriter writer = new PrintWriter(output, true);
- 
-                writer.println(new Date().toString());
-             */
+        sender.println(partialSum);
     }
  
     public static void main(String[] args) {

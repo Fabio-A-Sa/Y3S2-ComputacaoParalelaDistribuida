@@ -14,7 +14,6 @@ public class CalculatorClient {
 
     public void start() throws IOException, UnknownHostException {
         this.socket = new Socket(this.hostname, this.port);
-        System.out.println("Starting Calculator");
     }
 
     public void sendNumbers(String[] args) throws IOException {

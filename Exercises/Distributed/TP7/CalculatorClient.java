@@ -17,25 +17,22 @@ public class CalculatorClient {
         System.out.println("Starting Calculator");
     }
 
-    public void send() throws IOException, UnknownHostException {
-        System.out.println("Sending Calculator");
-        /**
-            OutputStream output = socket.getOutputStream();
-            PrintWriter writer = new PrintWriter(output, true);
-            writer.println("new Date()?".toString());
-
-            InputStream input = socket.getInputStream();
-            BufferedReader reader = new BufferedReader(new InputStreamReader(input));
- 
-            String time = reader.readLine();
- 
-            System.out.println(time);
-         */
+    public void send(String[] args) throws IOException, UnknownHostException {
+        BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+        PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+        BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in))) {
+        String userInput;
+        while ((userInput = stdIn.readLine()) != null) {
+            out.println(userInput);
+            String serverResponse = in.readLine();
+            System.out.println("Server response: " + serverResponse);
+        }
+        System.out.println("Final sum: " + in.readLine());
     }
  
     public static void main(String[] args) {
         
-        if (args.length != 2) {
+        if (args.length < 2) {
             System.out.println("usage: java CalculatorClient <HOST> <PORT> [NUMBERS]");
             return;
         }
@@ -43,9 +40,10 @@ public class CalculatorClient {
         int port = Integer.parseInt(args[1]);
 
         try {
-            CalculatorClient client = new CalculatorClient(hostname, port);
+            CalculatorClient client = new CalculatorClient(port, hostname);
             client.start();
             client.send();
+
         } catch (UnknownHostException exception) {
             System.out.println("Server not found: " + exception.getMessage());
             exception.printStackTrace();

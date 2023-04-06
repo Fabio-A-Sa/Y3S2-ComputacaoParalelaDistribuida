@@ -25,9 +25,20 @@ public class CalculatorServer {
 
     public void run() throws IOException {
         while (true) {
-            Socket socket = this.serverSocket.accept();
-            System.out.println("Client connected: ", socket);
-            //TODO: sum run
+            Socket clientSocket = this.serverSocket.accept();
+            System.out.println("Client connected: " +  clientSocket.getPort());
+            Thread clientThread = new Thread(() -> {
+                try {
+                    this.handleClient(clientSocket);
+                } catch (IOException exception) {
+                    System.out.println("Error handling client: " + exception.getMessage());
+                }
+            });
+            clientThread.start();
+        }
+    }
+
+    public void handleClient(Socket clientSocket) throws IOException {
 
             /**
                 InputStream input = socket.getInputStream();
@@ -42,7 +53,6 @@ public class CalculatorServer {
  
                 writer.println(new Date().toString());
              */
-        }
     }
  
     public static void main(String[] args) {
@@ -57,6 +67,7 @@ public class CalculatorServer {
             CalculatorServer server = new CalculatorServer(port);
             server.start();
             server.run();
+
         } catch (IOException exception) {
             System.out.println("Server exception: " + exception.getMessage());
             exception.printStackTrace();

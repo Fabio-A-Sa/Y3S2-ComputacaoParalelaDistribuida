@@ -46,9 +46,10 @@ public class Connection {
  
     public static void main(String[] args) {
 
-        // melhorar este passo: deixar exatamente o número de argumentos do modo, senão dá asneira para o servidor
-        if (args.length < 3 || args.length > 4 || !(args[1].equals("-login") || 
-                        args[1].equals("-register") || args[1].equals("-reconnect"))) {
+        if ( args.length < 3 ||
+            (!(args[1].equals("-login") && args.length == 4) &&
+             !(args[1].equals("-register") && args.length == 4)) &&
+             !(args[1].equals("-reconnect") && args.length == 3)) {
             System.out.println("unknown command");
             Connection.printUsage();
             return;

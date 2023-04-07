@@ -3,7 +3,7 @@ import java.net.*;
 import java.util.*;
 import java.util.concurrent.locks.ReentrantLock;
 
-public class CalculatorServer {
+public class Server {
 
     private int port;
     private int globalSum;
@@ -11,7 +11,7 @@ public class CalculatorServer {
     private ServerSocket serverSocket;
     private ReentrantLock lock;
 
-    public CalculatorServer(int port) {
+    public Server(int port) {
         this.port = port;
         this.globalSum = 0;
         this.clients = new HashMap<String, Integer>(); // (clientName, partialSum)
@@ -82,7 +82,7 @@ public class CalculatorServer {
         int port = Integer.parseInt(args[0]);
 
         try {
-            CalculatorServer server = new CalculatorServer(port);
+            Server server = new Server(port);
             server.start();
             server.run();
 

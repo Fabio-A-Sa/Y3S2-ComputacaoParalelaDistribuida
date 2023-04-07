@@ -1,13 +1,13 @@
 import java.net.*;
 import java.io.*;
  
-public class CalculatorClient {
+public class Client {
 
     private int port;
     private String hostname;
     private Socket socket;
 
-    public CalculatorClient(int port, String host) {
+    public Client(int port, String host) {
         this.port = port;
         this.hostname = hostname;
     }
@@ -40,7 +40,7 @@ public class CalculatorClient {
         int port = Integer.parseInt(args[1]);
 
         try {
-            CalculatorClient client = new CalculatorClient(port, hostname);
+            Client client = new Client(port, hostname);
             client.start();
             client.sendNumbers(args);
 

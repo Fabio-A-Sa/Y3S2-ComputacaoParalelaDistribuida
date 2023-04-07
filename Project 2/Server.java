@@ -3,6 +3,8 @@ import java.net.*;
 import java.util.*;
 import java.util.concurrent.locks.ReentrantLock;
 
+import javax.sound.midi.Synthesizer;
+
 public class Server {
 
     private int port;
@@ -37,14 +39,25 @@ public class Server {
 
     public void login(PrintWriter sender, BufferedReader receiver, Socket clientSocket) throws IOException { 
         System.out.println("Login logic");
+        String username = receiver.readLine();
+        String password = receiver.readLine();
+        System.out.println("data received: " + username + " " + password);
+        sender.println("token = 123login");
     }
 
     public void register(PrintWriter sender, BufferedReader receiver, Socket clientSocket) throws IOException { 
         System.out.println("Register logic");
+        String username = receiver.readLine();
+        String password = receiver.readLine();
+        System.out.println("data received: " + username + " " + password);
+        sender.println("token = 123register");
     }
 
     public void reconnect(PrintWriter sender, BufferedReader receiver, Socket clientSocket) throws IOException { 
         System.out.println("Reconnect logic");
+        String token = receiver.readLine();
+        System.out.println("data received: " + token);
+        sender.println("token = 123reconnect");
     }
 
     public void handleClient(Socket clientSocket) throws IOException {

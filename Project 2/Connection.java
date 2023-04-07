@@ -35,7 +35,7 @@ public class Connection {
     }
 
     public void listening() throws IOException, UnknownHostException {
-        System.out.println("TODO: client-server interaction");
+        System.out.println("TODO: client-server interaction, if autentication sucessfully");
     }
 
     private static void printUsage() {
@@ -46,7 +46,7 @@ public class Connection {
  
     public static void main(String[] args) {
 
-        // melhorar este passo: deixar exatamente o número de argumentos do modo, senão dá asneira
+        // melhorar este passo: deixar exatamente o número de argumentos do modo, senão dá asneira para o servidor
         if (args.length < 3 || args.length > 4 || !(args[1].equals("-login") || 
                         args[1].equals("-register") || args[1].equals("-reconnect"))) {
             System.out.println("unknown command");

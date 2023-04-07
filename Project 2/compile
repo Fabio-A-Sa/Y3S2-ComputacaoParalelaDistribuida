@@ -1,4 +1,2 @@
 rm *.class
-javac Client.java 
-javac Server.java
-javac Game.java
+javac -d . Connection.java

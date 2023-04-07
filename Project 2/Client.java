@@ -3,54 +3,31 @@ import java.io.*;
  
 public class Client {
 
-    private int port;
-    private String hostname;
-    private Socket socket;
+    private String username;
+    private String password;
+    private String token;
+    private int rank;
 
-    public Client(int port, String host) {
-        this.port = port;
-        this.hostname = hostname;
+    Client(String username, String password, String token) {
+        this.username = username;
+        this.password = password;
+        this.token = token;
+        this.rank = 0;
     }
 
-    public void start() throws IOException, UnknownHostException {
-        this.socket = new Socket(this.hostname, this.port);
+    public String getUsername() { 
+        return this.username; 
     }
 
-    public void sendNumbers(String[] args) throws IOException {
-
-        PrintWriter sender = new PrintWriter(this.socket.getOutputStream(), true);
-        BufferedReader receiver = new BufferedReader(new InputStreamReader(this.socket.getInputStream()));
-
-        for (int index = 2 ; index < args.length ; index++){
-            System.out.println("Sending number: " + args[index]);
-            sender.println(args[index]);
-            System.out.println("Partial total: " + receiver.readLine());
-        }
-
-        System.out.println("Server total sum: " + receiver.readLine());
+    public String getPassword() { 
+        return this.password; 
     }
- 
-    public static void main(String[] args) {
-        
-        if (args.length < 2) {
-            System.out.println("usage: java CalculatorClient <HOST> <PORT> [...NUMBERS]");
-            return;
-        }
-        String hostname = args[0];
-        int port = Integer.parseInt(args[1]);
 
-        try {
-            Client client = new Client(port, hostname);
-            client.start();
-            client.sendNumbers(args);
+    public String getToken() { 
+        return this.token; 
+    }
 
-        } catch (UnknownHostException exception) {
-            System.out.println("Server not found: " + exception.getMessage());
-            exception.printStackTrace();
- 
-        } catch (IOException exception) {
-            System.out.println("I/O error: " + exception.getMessage());
-            exception.printStackTrace();
-        }
+    public void incrementRank(int value) {
+        this.rank += value;
     }
 }

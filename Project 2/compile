@@ -1,2 +1,12 @@
+# Remove antigos binários
 rm *.class
-javac -d . Connection.java
+
+# Mata o processo que corre na porta 8000
+process=$(lsof -t -i:8000)
+kill -9 $process
+
+# Compila
+javac Connection.java
+javac Game.java
+javac Server.java
+javac Client.java

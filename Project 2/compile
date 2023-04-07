@@ -7,6 +7,4 @@ kill -9 $process
 
 # Compila
 javac Connection.java
-javac Game.java
 javac Server.java
-javac Client.java

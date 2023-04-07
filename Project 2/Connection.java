@@ -25,11 +25,13 @@ public class Connection {
         // Envia os arguments
         // Se correr bem, recebe o token de sessão
         for (int index = 1 ; index < args.length ; index++) {
-            System.out.println("Sending argument: " + args[index]);
+            System.out.println("Sending argument: " + args[index]); // para retirar, claro
             sender.println(args[index]);
         }
-
-        System.out.println("Server total sum: " + receiver.readLine());
+        
+        // register e login implícito ou register + login
+        // lidar com falhas aqui, a resposta não pode ser o token
+        System.out.println("Session token " + receiver.readLine());
     }
 
     public void listening() throws IOException, UnknownHostException {
@@ -44,6 +46,7 @@ public class Connection {
  
     public static void main(String[] args) {
 
+        // melhorar este passo: deixar exatamente o número de argumentos do modo, senão dá asneira
         if (args.length < 3 || args.length > 4 || !(args[1].equals("-login") || 
                         args[1].equals("-register") || args[1].equals("-reconnect"))) {
             System.out.println("unknown command");

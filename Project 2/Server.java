@@ -8,6 +8,7 @@ public class Server {
     private int port;
     private ServerSocket serverSocket;
     private ReentrantLock lock;
+    private List<Client> clients;
 
     public Server(int port) {
         this.port = port;
@@ -34,18 +35,37 @@ public class Server {
         }
     }
 
+    public void login(PrintWriter sender, BufferedReader receiver, Socket clientSocket) throws IOException { 
+        System.out.println("Login logic");
+    }
+
+    public void register(PrintWriter sender, BufferedReader receiver, Socket clientSocket) throws IOException { 
+        System.out.println("Register logic");
+    }
+
+    public void reconnect(PrintWriter sender, BufferedReader receiver, Socket clientSocket) throws IOException { 
+        System.out.println("Reconnect logic");
+    }
+
     public void handleClient(Socket clientSocket) throws IOException {
         
         PrintWriter sender = new PrintWriter(clientSocket.getOutputStream(), true);
         BufferedReader receiver = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-        String clientName = clientSocket.getInetAddress().getHostName();
-        System.out.println(clientName);
-        String clientInput;
-        while ((clientInput = receiver.readLine()) != null) {
-            System.out.println(clientInput);
-        }
 
-        sender.println("Autentication sucessfully");
+        switch(receiver.readLine()) {
+            case "-login":
+                this.login(sender, receiver, clientSocket);
+                break;
+            case "-register":
+                this.register(sender, receiver, clientSocket);
+                break;
+            case "-reconnect":
+                this.reconnect(sender, receiver, clientSocket);
+                break;
+            default:
+                sender.println("error in key");
+                clientSocket.close();
+        }
     }
  
     public static void main(String[] args) {

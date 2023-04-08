@@ -3,12 +3,12 @@ import java.io.*;
 
 public class Connection {
     
-    private final String host = "localhost";
     private int port;
     private Socket socket;
     private String token;
     private PrintWriter sender;
     private BufferedReader receiver;
+    private final String host = "localhost";
 
     public Connection(int port) {
         this.port = port;
@@ -20,18 +20,30 @@ public class Connection {
         this.receiver = new BufferedReader(new InputStreamReader(this.socket.getInputStream()));
     }
 
-    public void autenticate(String[] args) throws IOException {
+    public void stop() throws IOException {
+        this.socket.close();
+    }
 
-        // Envia os arguments
-        // Se correr bem, recebe o token de sessão
-        for (int index = 1 ; index < args.length ; index++) {
-            System.out.println("Sending argument: " + args[index]); // para retirar, claro
+    public boolean autenticate(String[] args) throws IOException {
+
+        // Send autentication arguments
+        for (int index = 1 ; index < args.length ; index++)
             sender.println(args[index]);
-        }
         
-        // register e login implícito ou register + login
-        // lidar com falhas aqui, a resposta não pode ser o token
-        System.out.println("Session token " + receiver.readLine());
+        // Register e Login implícito ou Register + Login?
+        switch (receiver.readLine()) {
+            case "ACK":
+                this.token = receiver.readLine();
+                System.out.println("Success. Your session token is: " + this.token);
+                return true;
+            case "NACK":
+                String error = receiver.readLine();
+                System.out.println("Error: " + error);
+                return false;
+            default:
+                System.out.println("Error: unknown server answer");
+                return false;
+        }
     }
 
     public void listening() throws IOException, UnknownHostException {
@@ -59,8 +71,10 @@ public class Connection {
             int port = Integer.parseInt(args[0]);
             Connection connection = new Connection(port);
             connection.start();
-            connection.autenticate(args);
-            connection.listening();
+            if (connection.autenticate(args))
+                connection.listening();
+            else 
+                connection.stop();
 
         } catch (UnknownHostException exception) {
             System.out.println("Server not found: " + exception.getMessage());

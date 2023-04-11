@@ -67,3 +67,11 @@ A abordagem `at-least-once` pode ser usada desde que do lado do cliente ou do se
 
 Sempre que existe um emissor e vários receptores. Quando o número de receptores é igual ao número de máquinas no sistema distribuído chama-se **broadcast**. Para X senders e Y receivers é necessário haver X\*Y canais de comunicação (*point-to-point* networks).
 
+Usando uma ST (*spanning tree*) é possível comunicar de forma eficiente, pois a árvore inclui todos os nós da rede, sem repetir arestas. Esta árvore é característica de cada *sender*.
+
+As comunicações podem usar o IP através de canais UDP, mesmo que não sejam confiáveis. Só o IPv6 é que suporta multicast.
+
+`Banana Tree Protocol` (BTP) é um protocolo de construção de redes mais eficiente do que qualquer MST ou SPT, que permite minimizar o custo das ligações ou o delay das mesmas:
+- Se a árvore não estiver criada, o primeiro nó inserido é o root;
+- Se a árvore estiver criada, então os nós seguintes terão como pai o root;
+- Cada nó pode pedir para mudar de pai se for conveniente para a estratégia definida, através de um request que pode vir a ser rejeitado ou não.

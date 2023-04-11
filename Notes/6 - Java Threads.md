@@ -187,3 +187,43 @@ class Bank {
     }
 }
 ```
+
+## Lock objects
+
+Usando locks explícitos:
+
+```java
+import java.util.concurrent.locks.ReentrantLock;
+
+class Bank {
+
+    private static class Account {
+
+        private int balance;
+        ReentrantLock lock;
+
+        Account (int balance) {
+            this.balance = balance;
+            this.lock = new ReentrantLock();
+        }
+
+        int balance() {
+            this.lock.lock();
+            try {
+                return this.balance;
+            } finally {
+                this.lock.unlock();
+            }
+        }
+
+        boolean deposit(int value) {
+            this.lock.lock();
+            balance += value;
+            this.lock.unlock();
+            return true;
+        }
+    }
+}
+```
+
+<TODO>

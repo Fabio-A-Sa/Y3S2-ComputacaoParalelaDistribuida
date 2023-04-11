@@ -42,3 +42,16 @@ public class HelloRunnable2 implements Runnable {
 }
 ```
 
+Forçar a sincronização e ordem de execução de threads com `sleep` (Thread.sleep(miliseconds)) não é seguro: apesar de originar uma percentagem muito grande de acertos, esta nunca é 100%.
+
+Os threads podem ser interrompidos:
+
+```java
+HelloRunnable2 r1 = new HelloRunnable2(1);
+Thread t1 = new Thread(r);
+System.out.println("Before");
+t1.start();
+Thread.sleep(100); 
+t1.interrupt();
+```
+

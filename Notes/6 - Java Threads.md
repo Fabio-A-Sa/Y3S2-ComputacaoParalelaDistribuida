@@ -44,6 +44,9 @@ public class HelloRunnable2 implements Runnable {
 
 Forçar a sincronização e ordem de execução de threads com `sleep` (Thread.sleep(miliseconds)) não é seguro: apesar de originar uma percentagem muito grande de acertos, esta nunca é 100%.
 
+
+## Interrupt
+
 Os threads podem ser interrompidos:
 
 ```java
@@ -55,3 +58,44 @@ Thread.sleep(100);
 t1.interrupt();
 ```
 
+## Executors
+
+É só criado um thread único e este fica encarregue de executar várias tarefas (classes com funções run()):
+
+```java
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
+
+public class ExecutorExample {
+
+    public static void main(String[] args) {
+
+        Executor executor = Executor.newSingleThreadExecutor();
+        //Executor executor = Executor.newFixedThreadPoll(2);
+
+        Runnable runnable1 = new Runnable() {
+            public void run() {
+                System.out.println("Hello from a Runnable task 1!");
+            }
+        };
+
+        Runnable runnable2 = new Runnable() {
+            public void run() {
+                System.out.println("Hello from a Runnable task 2!");
+            }
+        };
+
+        executor.execute(runnable1);
+        executor.execute(runnable2);
+        executor.shutdown();
+    }
+}
+```
+
+É implementado com base em filas de espera, onde podemos indicar quantas threads são responsáveis por realizar o trabalho da fila (*pool*). Por default é só uma:
+
+```java
+Executor executor = Executor.newFixedThreadPoll(2)
+```
+
+## Sincronização

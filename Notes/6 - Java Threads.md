@@ -99,3 +99,91 @@ Executor executor = Executor.newFixedThreadPoll(2)
 ```
 
 ## Sincronização
+
+Funções `synchronized` permite que threads diferentes fiquem bloqueados para leituras e escritas de variáveis, para não haver falta de coerência de valores:
+
+```java
+public class SynchronizedCounter {
+
+    int counter = 0;
+
+    public synchronized void increment() {
+        counter++;
+    }
+
+    public synchronized void decrement() {
+        counter--;
+    }
+
+    public synchronized int value() {
+        return counter;
+    }
+}
+```
+
+Podemos também sincronizar apenas partes do código, partes de métodos, desde que sejam com objetos e não primitivas:
+
+```java
+public void addName(String name) {
+
+    synchronized (this) {
+        lastName = name;
+        nameCount++;
+    }
+    nameList.add(name);
+}
+```
+
+Quando queremos manipular com segurança variáveis de tipo primitivo:
+
+```java
+public class MyLunch {
+
+    private long c1 = 0;
+    private long c2 = 0;
+    private Object lock1 = new Object();
+    private Object lock2 = new Object();
+
+    public void inc1() {
+        synchronized (lock1) {
+            c1++;
+        }
+    }
+
+    public void inc2() {
+        synchronized (lock2) {
+            c2++;
+        }
+    }
+}
+```
+
+## Deadlocks
+
+Evitar ciclos de `locks` pode ser realizado criando a sincronização sempre pela mesma ordem, independentemente do input:
+
+```java
+class Bank {
+
+    private Account[] av;
+
+    public boolean transfer(int from, int to, int amount) {
+
+        Account low, hight;
+        if (from < to) {
+            low = av[from];
+            high = av[to];
+        } else {
+            low = av[to];
+            high = av[from];
+        }
+
+        synchronized (low) {
+            synchronized (high) {
+                av[from].withdraw(amout);
+                av[to].deposite(amout);
+            }
+        }
+    }
+}
+```

@@ -52,3 +52,4 @@ Como os sistemas de cliente e servidor podem ser diferentes (diferente linguagem
 - `Standardize format`: a comunicação é efetuada da forma X durante a transferência. Requer duas traduções das mensagens e pode não ser a forma mais eficiente;
 - `Receiver-makes-right`: só do lado do servidor é que há tradução, se necessário. Isto implica que a própria mensagem contenha um identificador do tipo de plataforma usada;
 
+<TODO: o que falta>

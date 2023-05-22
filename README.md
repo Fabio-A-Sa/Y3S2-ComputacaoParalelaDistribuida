@@ -29,7 +29,11 @@ In this Project, we will study the effect on the processor performance on the me
 
 ### Project 2 (Grade: __/20)
 
-
+A client-server system using TCP sockets in Java. There are users that can authenticate with the system in order to play some text based game among them. A game is handled by a class and requires a given number of connected players to start. The implementation tolerate broken connections when users are queuing and waiting for the game to start. A protocol was developed between client and server that allows the clients to not lose their position in the game wait queue when resuming broken connections. Server implemented proprieties:
+- Fault Tolerance;
+- No race conditions;
+- Minimize thread overheads; 
+- Avoid slow clients;
 
 #### Members
 

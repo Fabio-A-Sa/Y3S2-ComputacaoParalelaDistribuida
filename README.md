@@ -17,7 +17,7 @@ This repository contains all the exercises and assessments of the UC Computaçã
 
 Notes that I take during theoretical lectures in Markdown. <br>
 
-### Project 1
+### Project 1 (Grade: 18.6/20)
 
 In this Project, we will study the effect on the processor performance on the memory hierarchy when accessing large amounts of data. For this effect, we used the product of two matrices, which is common in a wide range of applications across various fields, such as computer graphics and machine learning, and is still today a study field due to how computationally expensive it can be to solve them.
 

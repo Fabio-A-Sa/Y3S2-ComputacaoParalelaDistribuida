@@ -17,7 +17,7 @@ This repository contains all the exercises and assessments of the UC Computaçã
 
 Notes that I take during theoretical lectures in Markdown. <br>
 
-### Project 1 (Grade: 18.6/20)
+### Project 1 (Grade: 18.6/20) - Parallel Computing
 
 In this Project, we will study the effect on the processor performance on the memory hierarchy when accessing large amounts of data. For this effect, we used the product of two matrices, which is common in a wide range of applications across various fields, such as computer graphics and machine learning, and is still today a study field due to how computationally expensive it can be to solve them.
 
@@ -27,7 +27,7 @@ In this Project, we will study the effect on the processor performance on the me
 - Fábio Araújo de Sá, up202007658@fe.up.pt;
 - João Paulo Moreira Araújo, up202004293@fe.up.pt;
 
-### Project 2 (Grade: __/20)
+### Project 2 (Grade: 19.6/20) - Distributed Computing
 
 A client-server system using TCP sockets in Java. There are users that can authenticate with the system in order to play some text based game among them. A game is handled by a class and requires a given number of connected players to start. The implementation tolerate broken connections when users are queuing and waiting for the game to start. A protocol was developed between client and server that allows the clients to not lose their position in the game wait queue when resuming broken connections. Server implemented proprieties:
 - Fault Tolerance;

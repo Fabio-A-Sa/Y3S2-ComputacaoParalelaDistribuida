@@ -61,7 +61,7 @@ Pode haver retransmissão de tramas de informação até receber uma ACK por par
 - `At-least-once`: se os pedidos ao servidor forem indepotentes (se a mesma chamada ao procedimento remoto produzir os mesmos resultados);
 - `At-most-once`: se os pedidos ao servidor não forem indepotentes.
 
-A abordagem `at-least-once` pode ser usada desde que do lado do cliente ou do servidor haja uma memória do estado da máquina/request anterior.
+A abordagem `at-least-once` pode ser usada desde que do lado do cliente ou do servidor haja uma memória do estado da máquina/request anterior, sempre que o sistema do receptor não for indepotente.
 
 ## Multicast Communication
 

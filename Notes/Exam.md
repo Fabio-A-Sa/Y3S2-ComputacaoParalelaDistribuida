@@ -16,3 +16,6 @@ escalamento forte quando o problema é resolvido X vezes mais rápido, fraco qua
 a qualidade da paralelização é medida em speedup/processadoes. escalávem se a linha de isoeficiência de n em relação a P se mantém constante. speedup relativo quando o tempo é medido em qualquer nó, real quando é medido no nó mais eficiente.
 
 ## Distribuída
+
+Distribuído quando os pontos de comunicação não são locais nem o delay é desprezável. 
+UPD (connectionless, unreliable, unorder, datagrams, message based, without flow control, duplications) TCP (connection, reliable, order, flow control, stream based, without duplications)

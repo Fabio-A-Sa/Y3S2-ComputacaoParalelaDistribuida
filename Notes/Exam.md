@@ -18,4 +18,8 @@ a qualidade da paralelização é medida em speedup/processadoes. escalávem se 
 ## Distribuída
 
 Distribuído quando os pontos de comunicação não são locais nem o delay é desprezável. 
-UPD (connectionless, unreliable, unorder, datagrams, message based, without flow control, duplications) TCP (connection, reliable, order, flow control, stream based, without duplications)
+UPD (connectionless, unreliable, unorder, datagrams, message based, without flow control, duplications) TCP (connection, reliable, order, flow control, stream based, without duplications). Message, sequencia de bits processados atomicamente, stream é uma pipe de sistemas Unix.
+UDP necessita de especificar o endpoint (ipaddress, port) sempre que faz um send(), mas suporta multicast porque permite criar várias cópias e enviá-las a processos externos. EM TCP os canais podem ter a mesma port number.
+Remote procedure call (standardize format or receiver-makes-right, que tem de ter uma flag para saber qual é o protocolo usado para o servidor poder traduzir e interpretar).
+At least once (adequado para processos indepotentes) e At most once (para processos não indepotentes PNI). Para PNI os requests têm de ser acompanhados por um ID para fazer o "last remember" no server memory para garantias depois do reboot.
+Para ser event-based precisa de ter operações I/O assícronas ou non-blocking. Para ser thread-based precisa de ter threads a nível de user-mode e de kernel-mode. As de kernel não sabem sa existência das de level, sendo responsabilidade da library fazer a interação entre estas. O user-based é mau porque a falha de uma página faz com que o único thread em kernel fique em wait e não pode ser usado para implementar e explorar paralelismo multicore. Os server architectures (paralell, I/O operations, Prog) são iteractive (n, blockiing, easy), multithread (yes, blocking, races), state machine (yes, non-blocking, event-driven).

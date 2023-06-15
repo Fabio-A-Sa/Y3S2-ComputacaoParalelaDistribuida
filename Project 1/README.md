@@ -1,6 +1,5 @@
-# CPD Projects
-
-CPD Projects of group T05G11;.
+# CPD Project
+# Grade: 18.6/20
 
 Group members:
 

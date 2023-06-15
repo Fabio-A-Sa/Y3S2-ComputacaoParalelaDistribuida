@@ -1,4 +1,5 @@
 # Assignment 2
+# Grade: 19.6/20
 
 ## Compilation
 
